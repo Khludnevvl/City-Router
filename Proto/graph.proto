@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package transport_catalogue_serialize;
+
+message Edge {
+  uint32 bus_id = 1;
+  uint32 stop_id = 2;
+  int32 span_count = 3;
+  int32 wait_time = 4;
+  double time_in_road = 5;
+  uint32 from_id = 6;
+  uint32 to_id = 7;
+  double weight = 8;
+}
+
+message EdgeList { repeated Edge edge = 1; }
+
+message IncidenceList { repeated uint32 edge_id = 1; }
+
+message IncidenceLists { repeated IncidenceList incidence_list = 1; }
+
+message Graph {
+  EdgeList edge_list = 1;
+  IncidenceLists incidence_lists = 2;
+}

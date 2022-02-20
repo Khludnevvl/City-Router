@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+import "map_renderer.proto";
+import "transport_router.proto";
+
+package transport_catalogue_serialize;
+
+message Coordinate {
+  double lat = 1;
+  double lng = 2;
+}
+
+message Stop {
+  Coordinate coordinate = 1;
+  string name = 2;
+  uint32 id = 3;
+}
+
+message Bus {
+  uint32 id = 1;
+  repeated uint32 stop_id = 2;
+  bool is_roundtrip = 3;
+  string name = 4;
+}
+
+message Distance {
+  uint32 stop_from_id = 1;
+  uint32 stop_to_id = 2;
+  uint32 value = 3;
+}
+
+message DistanceList { repeated Distance distance = 1; }
+
+message BusList { repeated Bus bus = 1; }
+
+message StopList { repeated Stop stop = 1; }
+
+message TransportCatalogue {
+  StopList stops = 1;
+  DistanceList distances = 2;
+  BusList buses = 3;
+}
+
+message TransportDatabase{
+  TransportCatalogue catalogue = 1;
+  RenderSettings render_settings = 2;
+  Router router = 3;
+}

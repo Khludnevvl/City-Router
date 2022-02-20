@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package transport_catalogue_serialize;
+
+message Rgba {
+  uint32 red = 1;
+  uint32 green = 2;
+  uint32 blue = 3;
+  double opacity = 4;
+}
+
+message Rgb {
+  uint32 red = 1;
+  uint32 green = 2;
+  uint32 blue = 3;
+}
+
+message Color {
+  string str = 1;
+  Rgba rgba = 2;
+  Rgb rgb = 3;
+}
+
+message ColorPalette { repeated Color color = 1; }
